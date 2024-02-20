@@ -1,0 +1,38 @@
+{% extends "home/base.html" %}
+{% block title %} User Login{% endblock title %}
+{% block body %}
+    <h1 class="text-center">User login page</h1>
+    <div class="container">
+        {% if messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {% for message in messages %}
+            <strong>{{message}}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endfor %}
+          </div>
+          {% endif %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{% url "login_user" %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                              <label for="username" class="form-label">User Name</label>
+                              <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
+                            </div>
+                            <div class="mb-3">
+                              <label for="password" class="form-label">Password</label>
+                              <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+

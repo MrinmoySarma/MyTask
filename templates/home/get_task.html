@@ -1,0 +1,27 @@
+{% extends "home/base.html" %}
+{% block title %}Create Task{% endblock title %}
+{% block body %}
+  <h1 class="text-center">Create a ToDo</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{% url 'create_task' %}" method="post"> 
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="task" class="form-label">Task</label>
+                                <input type="input" class="form-control" name="task" required>
+                                </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Add Note</label>
+                                <textarea class="form-control" name="note" rows="3"></textarea>
+                                </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

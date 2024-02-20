@@ -1,0 +1,48 @@
+{% extends "home/base.html" %}
+{% block title %}View Task{% endblock title %}
+{% block body %}
+    <h1 class="text-center">Your ToDo list</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{% url "set_mark" %}" method="post"> 
+                                {% csrf_token %}
+                                    <table class="table table-striped-columns table-hover">
+                                        <thead class="text-center">
+                                            <td>Serial No.</td>
+                                            <td>Task</td>
+                                            <!-- <td>Note</td> -->
+                                            <td>Date</td>
+                                            <td>Mark Complete</td>
+                                        </thead>
+                                        {% for t in task %}
+                                        <tbody class="text-center">
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{t.task}}</td>
+                                                <!-- <td>{{t.note}}</td> -->
+                                                <td>{{t.date}}</td>
+                                                <td>
+                                                    {% if t.mark %}
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" checked="checked" value="{{t.id}}" name="mark">
+                                                    </div>
+                                                    {% else %}
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" value="{{t.id}}" name="mark">
+                                                    </div>
+                                                    {% endif %}
+                                                </td>
+                                        </tbody>
+                                        {% endfor %}
+                                    </table>
+                                    <button class="btn btn-primary" type="submit">Confirm</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+{% endblock body %}

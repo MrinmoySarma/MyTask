@@ -1,0 +1,27 @@
+{% extends "home/base.html" %}
+{% block title %}Update Task{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center">Update Task</h1>
+                        <form action="/updated/{{task.id}}" method="post"> 
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="task" class="form-label">Task</label>
+                                <input type="input" class="form-control" name="task" value="{{task.task}}">
+                                </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Add Note</label>
+                                <textarea class="form-control" name="note" rows="3">{{task.note}}</textarea>
+                                </div>
+                            <div class="container"><button type="submit" class="btn btn-primary">Submit</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
